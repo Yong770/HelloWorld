@@ -12,7 +12,6 @@
 주석
 주석
 주석
-주석
 Ctrl+D : 한줄 복제하기
 Shift+Delete : 한줄 삭제하기
 Shift+화살표 : 블럭 잡기
@@ -24,6 +23,12 @@ Ctrl+B+B : 프로젝트 빌드
 Ctrl+B+R : 프로젝트 리빌드
 Ctrl+화살표 위아래 : 보이는 영역 올리고 내리기
 Ctrl+화살표 좌우 : 단어 단위로 움직이기
+Ctrl + K + C : 블럭 영역 전부 주석처리
+Ctrl + K + U : 블럭 영역 전부 주석제거
+Shift+Tab : 왼쪽으로
+
+
+
 */
 
 /*
@@ -34,54 +39,2066 @@ Ctrl+화살표 좌우 : 단어 단위로 움직이기
 리빌드 : 전체 다시 빌드하기 (정리 + 빌드)
 */
 
+/*
+변수(Variable)
+ - 변하는 숫자
+ - 컴퓨터에 값을 기억 시키기 위해 만들고 사용
+*/
+
+/*
+연산자(Operator)
+ - 계산을 하기 위한 기호
+ - 대입 연산자
+    =
+    = 오른쪽에 있는 값을 왼쪽에 넣어라
+    a = b; // b에 있는 값을 a에 넣어라
+
+ - 산술 연산자
+    사칙연산
+    +(더하기) -(빼기) *(곱하기) /(나누기) %(나머지 연산)
+    a = 5%3;
+    a에는 2가 들어간다.( 5를 3으로 나누었을 때 나머지가 2 )
+
+- 복합 대입연산자
+    줄여쓰기용
+    a += b; // 아래와 같은 코드
+    a = a + b;
+
+- 증감 연산자
+    a++; //a에다가 1을 더해라
+    a--; //a에다가 1을 빼라
+
+
+( a != b ) : a와 b가 다르다.
+*/
+
+/*
+이진수(Binary)
+ - 컴퓨터는 0과 1만 알 수 있기 때문에 기본적으로 이진수를 사용
+
+ int number = 10; // 사람이 알아보기 위해 10진수로 값을 대입
+                  // 실제 메모리에는 0000 0000 0000 0000 0000 0000 0000 1010
+
+ex) 13 = 2^3*1 + 2^2*1 + 2^1*0 + 2^0*1 = 1101
+
+*/
+
+/*
+데이터 타입
+int : 일반적으로 32bit. 범위는 (대략 -21억~+21억)
+
+float : 실수형. 32bit. 태생적으로 오차가 있는 타입. 대략 총 7자리부터 오차 발생
+
+double : 실수형. 64bit
+
+bool : 불리언. true/false만 저장.
+
+char : 캐릭터. 글자하나를 저장하는 데이터 타입. 8bit 정수형
+    char alpha = 'a'; // 글자 하나만 저장
+    char alpha2 = 64;
+
+std::string : 스트링. 문자열을 쉽게 다룰 수 있는 자료형
+    문자열 : 글자 여러개가 연결된 것
+    std::string str = "Hello World!";
+    char* str;
+    char str[32];
+*/
+//8bit = 1byte
+
+/*
+상수(Constant)
+ - 변하지 않는 수
+ - 코드의 안정성과 가독성을 높여준다.
+ (매직넘버 회피에 좋다)
+ (매크로로와는 달리 타입체크가 가능하다)
+*/
+
+/*
+비교연산자
+ - 비교를 하는 연산자. 참이냐 거짓이냐가 결과로 나온다.
+ - >, <, >=, <=, ==
+
+ a=10;
+ b=20;
+bool result = a > b; //결과는 거짓 result = false;
+
+a=100;
+b=20;
+bool result = a > b; //결과는 참 result = ture;
+
+int a = 50;
+int b = 50;
+bool result = (a == b); // 결과는 참이니까 result = true;
+*/
+
+/*
+제어문
+ - 프로그램의 흐름을 제어하는 문(Statement)
+
+ - 조건문 : 조건에 따라 프로그램의 흐름을 변경하는 문
+    - if, else if, else
+    - switch
+    - 삼항연산자
+
+ - 반복문 : 일정 조건에 따라 코드를 반복하는 문
+*/
+
+/*
+논리 연산자
+ - bool값을 양변에 받아 bool로 된 결과를 낸다.
+
+&& (And) &&의 양쪽이 둘다 true면 true. 그 외에는 false
+
+|| (Or)  ||의 양쪽에 하나라도 true가 있으면 true, 아니면 false
+
+!  (Not) !뒤의 bool이 true면 false. false면 true.   
+*/
+
+/*
+* 0b -> 2진수라는뜻
+비트 연산자
+&   (And) 두 비트가 모두 1이면 1, 아니면 0
+    특정 비트가 세팅이 되어 있는지 확인하는데 사용(플래그 검사)
+    int a = 10;             //  0b1010
+    int b = 9;              //  0b1001
+    int c = a & b;          //  0b1000
+
+|   (Or)  두 비트가 하나라도 1이면 1, 둘 다 0이면 0
+    특정 비트에 플래그를 세팅하고 싶을 때 사용 (플래그 추가)
+    int a = 10;             //  0b1010
+    int b = 9;              //  0b1001
+    int c = a | b;          //  0b1011
+
+^   (XOR)   두 비트가 서로 다르면 1. 같으면 0
+    특정 비트를 토글하고 싶을 때 사용
+    int a = 10;             //  0b1010
+    int b = 9;              //  0b1001
+    int c = a ^ b;          //  0b0011
+
+~   (Not)   비트값을 반전 시킨다(0->1, 1->0)
+    int a = 10;             //0b1010
+    a = ~a;                 //0b0101
+
+<<  (Left Shift)    비트들을 왼쪽으로 이동
+    한번 움직일 때마다 수가 두배가 된다.
+    int a = 7;              //0b0111
+    a = a << 1;             //0b1110
+
+>>  (Right Shift)   비트들을 오른쪽으로 이동
+    한번 움직일 때마다 수가 절반이 된다.
+    int a = 7;              //0b0111
+    a = a >> 1;             //0b0011
+*/
+
+/*
+반복문
+- 제어문 중의 하나
+- 특정 코드 블록을 조건에 따라 여러번 반복해서 실행할 수 있게 해주는 문
+
+for         반복회수가 명확할 때 좋음
+
+while       반복회수가 명확하지 않고 조건에 따라 반복할 때 사용
+
+do-while    최소 한번은 무조건 실행해야 할 때 사용.(while과 거의 같음)
+
+*/
+
+/*
+continue
+- 반복문 안에서 사용
+- continue를 만나면 그 이후의 코드는 스킵하고 다음 반복을 진행
+break
+- 반복문이나 switch문에서 반복문을 벗어나거나 case를 종료시킨다.
+
+*/
+
+/*
+랜덤
+    -   무작위로 숫자를 선택하는 법
+    -   C 스타일
+        -   rand()              함수 활용
+        -   srand(time(0));     시드값 설정
+    - C++ 스타일
+        - #include <random>
+        - c스타일보다 많은 기능을 제공한다.
+
+*/
+
+/*
+함수(Function)
+ - 특정한 기능을 수행하는 코드블럭
+ - 선언을 하고 사용해야 한다 
+        -> 함수의 리턴타입 : 함수가 끝났을 때 돌려 받을 값의 종류 함수의 이름, 함수의 파라메터를 설정해줘야 한다.
+        함수의 리턴타입 : 함수가 끝났을 때 돌려 받을 값의 종류 
+        함수의 이름 : 함수를 호출(사용)하고 싶을 때 부르는 이름
+        함수의 파라메터 : 함수의 입력값. 0개 이상 들어갈 수 있다.
+        - 선언을 한 후에는 구현을 정의해야한다.(함수의 실제 동작을 작성)
+
+
+*/
+
+/*
+재귀 호출(Recurcive Call)
+ - 함수 안에서 자기자신을 다시 호출하는 함수
+
+*/
+
+/*
+템플릿(Template) 함수
+ - 데이터 타입에 관계 없이 동일한 로직을 여러 자료형에 사용할 수 있게 해주는 C++의 기능
+ - 컴파일 타임에 실제 사용하는 곳이 있으면 해당 타입으로 코드를 생성한다.
+    -> 헤더의 선언과 구현이 함께 있어야 한다.
+*/
+
+/*
+인라인(inline) 함수
+    - 함수 호출문을 해당 함수의 실제 코드로 대체하는 함수
+
+*/
+
+/*
+*   스코프
+    - 변수, 함수, 객체들이 유효하게 사용될 수 있는 범위
+    - 일반적으로 선언된 중괄호 안쪽에서만 유효
+    - 지역 변수 : 특정 함수 내에서 선언된 변수
+    - 전역 변수 : 프로그램 전체에서 사용할 수 있는 변수
+*/
+
+
+/*
+    배열
+    - 같은 데이터타입을 가진 요소들이 연속적으로 저장되어 있는 데이터 구조
+    int Array[5]; // int 5개짜리 배열
+    Array[2] = 10;   //  3번째 요소에 접근해서 10을 대입한다.
+
+    - 장점 : 빠르게 각 요소에 접근이 가능하다.
+    - 단점 : 크기가 고정이다. 중간에 데이터 삽입/삭제가 어렵다.
+
+    이차원 배열
+    배열을 이차원으로 표현한 것(축이 2개)
+    - int Array [4][3] = {{1,2,3}, {4,5,6}, {7,8,9}, {0,1,2}};
+    - int 3개짜리 배열이 4줄 들어있다.
+    사실 int Array[12]랑 메모리 구조가 같다.
+
+*/
+
+/*
+    캐스팅(Casting)
+    - 하나의 데이터 타입을 다른 데이터 타입으로 변경하는 행위
+
+*/
+/*
+    피셔-에이츠 알고리즘
+        -   배열의 내용을 랜덤하게 섞는 셔플 알고리즘
+        -   동일한 확률로 섞이도록 증명 완료된 알고리즘
+
+        -   알고리즘 순서
+            1. 배열의 마지막요소에서 첫요소까지 순회
+            2. 현재 요소의 인덱스(i)와, 0~i 중 임의의 인덱스(j)를 선택한다.
+            3. i번째 요소와 j번째 요소를 서로 교환
+            4. i가 0이 될때까지 반복
+
+
+*/
+
+/*
+참조(Reference)
+    - 변수의 별명
+        int Number = 10;
+        int& Ref = Number;  //  Number의 참조를 Ref라고 결정
+        Ref = 20; // Number가 20으로 수정된다.
+    - 참조를 변경할 경우 원본 변수도 함께 수정된다. -> 함수 파라메터로 사용하면 편리하다
+    - 참조는 항상 어떤 변수와 연결되어 있어야 한다.
+    - 함수 파라메터에 참조를 사용할 때
+        -   파라메터 값을 수정하는 출력용 파라메터일 경우 Out이라는 접두사를 붙이는 것이 관례이다.
+        -   파라메터 값을 읽기만 하는 경우에는 const를 붙여줘서 
+
+
+*/
+
+/*
+    포인터
+    - 메모리 주소를 저장하는 데이터 타입
+    - 각 데이터타입에 *만 붙이면 포인터 타입
+    - ex) int* 인티저 포인터, float* 플로트 포인터, char* 캐릭터 포인터
+    - 포인터 연산자
+
+        - 주소 연산자(&) : 변수의 주소를 가져온다.
+            int i = 10;
+            int* p = &i;    // i의 주소를 int* p에 대입해라.
+            
+        - 간접참조 연산자(*) : 포인터 변수가 가리키는 주소에 저장되어 있는 실제 값
+            int i = 20;
+            int* p = &i;
+            (*p) = 30;      // i=30;과 같다.
+
+        - 산술 연산자 (+, -, ++, -- )
+            int i = 30;
+            int* p = &i;
+            p= p + 1;       //  예시로 p가 원래 0x0004라고 가정했을 때 p+1을 한 값은 0x0008
+            double d = 10.5;
+            double* pD = &d;
+            pD += 1;        //  pD가 원래 0x0000이라고 가정했을때 pD += 1은 0x0008
+
+        - 배열의 포인터는 기본적으로 같다. (배열의 이름은 배열의 첫번째 요소의 주소이다.)
+    */
+
+/*
+    C++의 메모리 영역(단순화 된 버전)
+     - 코드 영역 : 실행코드가 저장되는 공간
+     - 데이터 영역 : 
+            프로그램이 시작할 때부터 끝날 때까지 유지되는 변수가 저장되는 공간
+     - 힙 영역
+        램 그 자체
+        프로그램 실행 중에 프로그램이 필요에 따라 직접 메모리를 할당 받고 사용하는 공간
+        힙은 운영체제가 관리하기 때문에 힙을 할당받는 행위는 느리다.
+        메모리를 할당 받았으면 반드시 해제를 해줘야 한다.(해제를 하지 않으면 메모리 릭(메모리 누수) 발생)
+     - 스택 영역
+        함수가 호출될 때마다 필요한 변수(지역 변수)가 저장되는 공간
+        함수가 끝나면 자동으로 정리
+
+
+*/
+
+/*
+    정적(static)  :   프로그램 실행 전에 이미 결정 나 있는 것들.
+    동적(dynamic) :   프로그램 실행 중에 결정이 되는 것들.
+*/
+
+
+
+
+/*
+    동적 할당(Dynamic Allocation)
+        -   프로그램 실행 중(Runtime)에 메모리를 사용하기 위해 확보하는 행위
+        -   운영체제(OS)에게 요청함 -> 그래서 늦다.
+        - C스타일
+            할당 : malloc
+            해제 : free
+            단순 메모리 블럭만 받는 형식(초기화가 없음. 타임 안정성 없음. 생성자/소멸자 실행안됨)
+        - C++스타일
+            할당 : new
+            해제 : 일반 변수는 delete, 배열은 delete[]
+            int* Data = new int(5); //  int 하나를 할당 받는데 주소를 가리키는 값은 5를 설정해라
+            delete Data;
+            Data = nullptr;
+            int* Array = new int[10];   //  int 10개짜리 배열을 만들어라
+            delete[] Array;             //  배열은 반드시 이렇게 해제해야 한다.
+            //delete Array; // 절대 이렇게 하면 안된다. 이렇게 하면 Array[0] 부분만 할당 해제가 된다.
+            Array = nullptr;
+            특정 객체(Object)를 생성하는 방식.(초기화가 있다. 타입 안정성이 있다. 생성자와 소멸자가 실행된다.)
+        - 메모리 할당과 성능 문제
+            메모리 할당은 오래 걸린다.(컴퓨터 입장에서 느리다. 운영체제의 메모리관리나 적절한 사이즈를 찾는데 시간이 걸림)
+            메모리 단편화 문제(메모리 할당 해제를 반복하다가 전체 빈공간은 충분하지만 연속된 빈공간이 부족해지는 현상)
+        - 메모리 릭(메모리 누수)
+            할당한 메모리를 반환하지 않아 해당 영역을 사용하지 못하게 되는 현상
+
+*/
+
+/*
+    문자열
+     - 글자 여러개를 모아 문장을 만들어 놓은 것.
+     - C언어에서는 문자열을 포함하기 위해 char*를 사용.(==> char[]을 쓰기도 한다)
+     - 항상 마지막 문자열은 널 문자('\0')로 끝난다.
+     - char*에는 아스키 코드가 기록된다.
+*/
+     
+/*
+   파싱(Parsing)
+    - 문자열을 분석해서 의미있는 정보로 변환하는 과정
+*/
+
+/*
+ 구조체(Struct)
+    -   여러 종류의 데이터타입을 하나로 묶을 때 사용.
+    -   프로그램 코드의 가독성과 유지 보수성을 향상시켜 준다.
+    struct Enemy
+    {
+        std::string Name;
+        float Health;
+        float AttackPower;
+        int DropGold;
+    }
+    Enemy goblin;       //  적 하나에 대한 정보 만들기
+    Enemy goblin[3];    //  적 3마리에 대한 정보 만들기
+
+    구조체 동적 할당하는 법
+    Enemy* pGoblin = new Enemy();   //  새 적을 동적할당 받음
+    delete pGoblin;
+    pGoblin = nullptr;
+
+    구조체 데이터 접근법
+        -   일반적인 경우 점(.) 연산자 사용
+                goblin.Name = "고블린";
+                goblin.Health = 20;
+        -   포인터 변수인 경우 화살표(->) 연산자 사용
+            pGoblin -> AttackPower = 5.0f;
+            pGoblin -> DropGold = 100;
+    구조체의 생성자
+        -   객체가 만들어질 때 자동으로 호출되는 특별한 함수
+        -   객체
+            int i = 10;     //  인티저 객체 하나가 만들어짐
+            int array[3];   //  인티저 객체 3개가 만들어짐
+
+            Enemy* pEnemy = new Enemy();    //  Enemy 객체 하나가 만들어짐
+        -   맴버 변수 초기화에 사용(값을 계산하거나 변경해서 넣을때 좋음)
+        -   일반 함수와 다른 특징
+                1. 이름이 구조체 이름과 같아.
+                2. 리턴 타입이 없다.
+                3. 객체가 만들어질 때 자동으로 호출됨
+                4.생성자가 여러개 있을 수도 있다.
+                4. 없으면 기본 생성자가 자동으로 만들어진다(무조건 하나는 있다)
+    구조체의 명령어 오버로딩(덮어쓰기)
+        각종 연산자
+
+    
+
+
+
+*/         
+
+/*
+    객체지향
+    - 객체(Object) : 게임 상에 존재하는 모든 것.
+    - 객체지향 : 객체를 중심으로 프로그램을 설계하는 것.
+    - 클래스 : 객체를 만들기 위한 설계도. 객체가 가져야할 상태(데이터)와 동작(기능)을 하나로 묶어 놓은 것
+    - 객체지향의 4대 특성
+        - 추상화
+            - 불필요한 세부사항을 숨기고, 핵심적인 부분만 보여주는 것
+            - 코드의 복잡성을 낮출 수 있다(=이해하기가 쉬워진다)
+        - 캡슐화
+            - 접근제한자를 통한 데이터의 접근 제어
+            - 몰라도 되는 것은 안보여야 한다.(데이터를 보호하고 코드의 안정성을 높이고 결합도도 떨어트린다)
+        - 상속
+            - 부모 클래스(기본클래스)의 데이터와 기능을 물려받은 자식 클래스(파생클래스)를 만드는 것
+            - 코드의 재사용성을 높이고 계층 구조를 형성한다.
+        - 다형성
+            - 동일한 인터페이스를 통해 다양한 처리를 하는 것
+            - 가상 함수의 오버라이드를 통한 다형성 구현
+
+*/
+
+/*
+    클래스
+        - 객체를 만들기 위한 설계도
+        - 객체가 가지게 될 상태와 동작을 하나로 묶어 놓은 것
+        - 인스턴스 : 클래스를 기반으로 실제 메모리에 만들어진 실체(new 하는 것)
+        - 구성요소
+            - 생성자 : 구조체와 같음. 객체를 생성했을 때 자동 호출되는 특별한 함수
+            - 소멸자 : 구조체나 객체가 해제될 때 자동으로 호출되는 특별한 함수
+                - 객체가 사용하던 자원을 깨끗이 정리하는 역할
+                - 클래스 내부에서 동적할당한 메모리를 해제하는데 주로 사용(메모리 릭 방지)
+            - 맴버 변수 : 객체의 상태나 데이터를 저장하는 변수. (속성, 필드라고도 함)
+            - 맴버 함수 : 객체가 할 수 있는 동작이나 기능을 정의한 함수. (메서드라고도 함)
+*/
+
+/*
+    접근 제한자(Access Modifier)
+        - 이 객체의 내부(맴버)를 누구까지 볼 수 있을 것인가를 결정
+        - public, protected, private
+        - public : 누구든지 접근 가능하다.
+        - private : 나만 접근 가능하다.
+        - protected : 나와 나를 상속받은 대상만 접근 가능하다.
+        - 구조체의 접근제한자 : 설정안하면 기본적으로 public
+        - 클래스의 접근제한자 : 설정안하면 기본적으로 private
+*/
+
+/*
+    상속
+    - 부모 클래스의 맴버를 물려 받는 행위
+    - 특징
+     - 코드 재사용성이 증가한다.
+     - 계층구조로 객체들의 관계를 명확히 할 수 있다.
+     - 부모 클래스의 포인터나 참조를 통해 자식 클래스를 다룰 수 있다.
+
+
+*/
+
+/*
+    가상 함수
+    _ 부모 클래스에서 함수의 선언 앞에다가 virtual을 붙이면 된다.
+    - 자식 클래스는 부모의 가상함수를 덮어쓸 경우에만 함수의 선언 앞에 virtual이라고 쓰고 뒤에 override라고 붙인다.
+    - 주의 : 상속을 하거나 받았을 때는 소멸자를 무조건 가상함수 처리해야 한다.
+    - 가상 테이블(vtable)
+        - 클래스에 가상 함수가 하나라도 있으면 자동으로  생성
+        - 그 클래스의 가상 함수들의 주소 목록을 저장해 놓은 테이블
+    - 다이아몬드 상속 문제 : 다중 상속시 발생하는 대표적인 문제
+
+*/
+
+/*
+    dynamic_cast
+    - 런타임(실행중)에 이 주소가 실제 어떤 자식 클래스의 객체를 가리키고 있는지 안전하게 확인해주는 cast
+    - 부모 클래스에 반드시 하나 이상의 가상함수가 있어야 함.(vtable이 있어야 하기 때문에)
+    - Child* pChild = dynamic_cast<Parent*>(pParent);
+    - 속도가 늦기 때문에 가능한 적게 쓰는게 좋다.
+*/
+
+/*
+    순수 가상 함수
+        - 가상 함수인데 구현을 "= 0"으로 표시해 놓은 것
+        - 선언만 있고 구현이 없다
+        - 순수 가상함수를 가진 클래스를 상속받은 클래스는 반드시 순수 가상함수를 override해서 구현해야한다.
+*/
+
+
+
+/*
+    추상 클래스
+        - 하나 이상의 순수 가상 함수를 포함하는 클래스
+        - 다른 클래스가 상속받을 기본 틀을 제공하기 위해 사용
+        - 인스턴스화 할수없다. -> 상속 받은 클래스에서 순수 가상함수를 override한 후에 인스턴스화 가능
+
+
+*/
+
+
+/*
+    인터페이스
+        - 이 클래스는 "이런일을 할 수 있다"라고 알려주는 것
+        - (클래스가 반드시 구현해야 할 맴버 함수들의 명세를 정의하기 위해 사용)
+        - 주의 사항
+            - 이름은 무조건 대문자 I로 시작하는 것이 관례(필수적인 관례)
+            - 맴버는 순수 가상 함수만 있다.(소멸자 제외)
+*/
+
+/*
+    enum class
+        - enum : 상수의 집합
+        - enum class : 더 안전해진 enum.(안전해진만큼 불편해진 부분도 있음)
+            - 코드의 명확성과 안정성을 향상시킨다.
+            - enum의 데이터 크기 설정도 가능하다.
+
+        enum AnimalType
+        {
+            Dog, Cat, Tiger
+        }
+
+        enum class AnimalType : uint8_t
+        {
+            Dog, Cat, Tiger
+        }
+
+
+*/
+
+/*
+    자료구조(Data Structure)
+        - 데이터를 효율적으로 관리하는 방법(특정한 구조와 규칙이 있음)
+        - 목적
+            - 더 빠르게 데이터를 처리한다.(CPU자원 아끼기)
+            - 더 효율적으로 데이터를 관리(메모리 자원 아끼기)
+            - 문제 해결을 위한 구조 제공
+        - 종류
+            - 배열
+            - 리스트
+            - 스택
+            - 큐
+            - 트리
+            - 그래프
+*/
+
+/*
+    배열
+        - 동일한 타입의 데이터를 연속된 메모리 공간에 저장
+        - 인덱스를 통해 데이터에 직접 접근
+        - 장점
+            - 접근 속도가 매우 빠름 (O(1) <- 시간복잡도. 빅오 표기법)
+            - 구조가 단순하여 사용하기 쉬움
+            - 별도의 오버헤드가 없다.
+        - 단점
+            - 데이터 추가/삭제가 매우 느림(O(n))
+            - 생성시 크기가 고정되어 유연성이 떨어짐
+
+*/
+
+/*
+    빅오 표기법
+        - 알고리즘의 시간복잡도를 나타내는 방법
+        - O(1) : 알고리즘을 돌릴 때 데이터의 개수와 상관 없이 항상 일정한 속도를 유지한다.
+        - O(n) : 알고리즘을 돌릴 때 데이터의 개수에 비례해서 속도가 느려진다
+        - O(logN) : 알고리즘을 돌릴 때 속도가 로그 그래프에 비례한다.(데이터 수가 많아질 수록 유리하다)
+
+*/
+
+/*
+    리스트(Linked List)
+        - 링크드 리스트라고도 함
+        - 데이터가 포인터로 연결된 형태
+            - 논리적으로 하나의 줄을 만든다.(선형 자료구조)
+        -노드
+            - 자료구조에서 데이터 하나를 가리키는 구조체
+            - 리스트의 노드는 데이터와 다음 노드를 다리키는 주소로 이루어져 있음
+        -주요 구성 요소
+            - Head : 리스트의 첫번째 노드
+            - Tail : 리스트의 마지막 노드
+        - 장점
+            - 데이터의 추가/삭제가 쉽다
+            - 크기가 동적으로 변할 수 있어 유연하다
+        - 단점
+            - 탑색 속도가 매우 느리다(처음부터 순서대로 찾아야 한다.)
+            - 다음 노드를 저장하기 위한 포인터를 위해 추가 메모리 공간이 필요하다.(오버헤드 발생)
+
+
+
+
+*/
+
+/*
+    스택(Stack)
+    - 특징
+     - 후입선출(Last In First Out, LIFO) 구조
+    - 구조
+        - 속성 (맴버 변수)
+            - Top : 데이터 입출력 위치
+        - 기능 (맴버 함수)
+            - Push : Top에 데이터 추가
+            - Pop : Top에서 데이터 가져오기
+    - 장점
+        - 구조가 단순하다 -> 구현이 쉽다
+        - 데이터 저장 및 읽기 속도가 빠름
+        - 적절한 사용 예
+            - UI 창 닫는 순서, 실행 취소(Undo), 함수 콜 스택 등등
+
+    - 단점
+        - 맨 위의 데이터 외에는 접근하거나 탐색할 수 없음
+        - 기능이 단순하여 활용도가 제한적
+
+*/
+
+/*
+    큐(Queue)
+     - 특성
+        -   선입 선출(First In First Out, FIFO) 구조. 먼저 들어온 것이 먼저 나간다.
+     - 구조
+      - 속성
+        - Front : 큐의 제일 앞. 항상 데이터는 여기서 제거된다.
+        - Rear : 큐의 마지막. 항상 데이터는 여기에 추가된다.
+     - 기능
+        - Enqueue : Rear에 데이터를 추가하는 함수
+        - Dequeue : Front에서 데이터를 빼 내는 함수
+     - 장점
+        - 순서대로 데이터를 처리할 때 유용
+        - 대기표, 식당 줄, 매칭 큐 등등에 활용됨
+     - 단점
+        - 중간에 있는 데이터에 접근하거나 탐색 불가능
+        - 기능이 단순하여 활용도가 제한적
+*/
+
+/*
+    얕은 복사
+        - 할당된 메모리를 복사할 때 주소만 복사하는 것
+        - 장점 : 빠르다
+        - 단점 : 댕글링 포인터를 만들지 않게 하기 위해 신경 써야 한다.
+        - 이해안되면 외워야 하는 것
+            - 구조체나 클래스는 함수 파라메터로 넘길 때 참조나 포인터로만 넘겨라.
+*/
+
+/*
+    트리
+    - 특징
+        - 부모-자식 관계를 가지는 계층적 구조를 나타내는 자료구조
+        - 하나의 Root(뿌리)에서 시작하여 가지가 뻗어나가는 형태
+        - 순환이 없는 그래프의 한 종류
+        - 대표적인 비선형 자료구조
+    - 장점
+        - 계층적인 데이터를 표현하기에 최적화 되어 있다.
+        - 탐색과 정렬에 매우 효율적인 성능을 보인다.(이진 탐색 트리 계열)
+        - 배열과 리스트의 장점을 둘 다 가지고 있다.(탐색이 빠르면서 삽입 삭제도 빠르고 크기도 동적이다)
+    - 단점
+        - 구조가 복잡하고 구현이 어려울 수 있다.
+        - 데이터를 추가/삭제하는 과정이 복잡할 수 있다(균형을 맞춰야 할 때)
+    - 트리의 순회
+        - 트리의 모든 노드를 한번씩 방문하는 방법
+        - 깊이 우선 탐색 : 일단 아래쪽으로 가는 것을 우선. 이쪽을 많이 사용.
+            - 전위 순회 : 루트->왼쪽->오른쪽
+            - 중위 순회 : 왼쪽->루트->오른쪽
+            - 후위 순회 : 왼쪽->오른쪽->루트
+        - 너비 우선 탐색 : 일단 옆으로 가는 것을 우산. 레벨 순서대로 탐색.
+*/
+
+/*
+    그래프
+        - 노드(정점Vertex)와 노드들을 연결하는 간선(Edge)으로 이루어진 네트워크 구조
+
+        장점
+            - 지도, 지하철 노선도, SNS 친구 관계 등 복잡한 관계를 표현하는데 적합하다.
+            - 다양한 현실 세계의 문제를 그대로 모델링하여 해결하는데 사용된다.
+            - 게임에서는 길찾기 알고리즘에 쓰인다.
+        단점
+            - 모든 자료구조 중에서 가장 복잡한 구조를 가진다.
+            - 구현이 매우 어렵고 관련된 알고리즘( 최단 경로, 탐색)도 복잡하다.
+        구현 방식
+            - 인접행렬 사용하기 : 2차원 배열을 이용해 연결 표시
+            - 인접 리스트 사용하기 : 연결된 노드를 리스트로 가지고 있기
+
+
+*/
+
+
+/*
+    템플릿 클래스 (구조체도 동일)
+        - 탬플릿 함수와 같음. 코드 중복을 줄이는 것이 목적
+        - 컴파일 타임에 템플릿을 사용하는 코드가 나오면 컴파일러가 생성 (탬플릿 인스턴스화)
+
+    템플릿 특수화
+        - 일반적인 규칙(템플릿)으로 해결되지 않는 특별한 예외(특수화)를 처리하는 방식
+        - 방식 : 함수 앞에 template<>를 붙이고 T자리에 특수화하고 싶은 타입을 적는다.
+*/
+
+/*
+    STL(Standard Template Library)
+        - 구성요소
+            - 컨테이너 : 데이터 저장 방식(자료구조)
+            - 알고리즘 : 데이터를 각종 방식으로 조작(정렬, 탐색, 스왑 등등)
+            - 반복자(Iterator) : 컨테이너를 순회할 수 있게 해주는 포인터 같은 것
+            - 함수객체(Functor) : 알고리즘에서 실제 처리할 방법을 지정하는데 사용(함수를 변수처럼 사용). 람다식으로 많이 사용
+
+*/
+
+/*
+    std::vector
+        - 특징
+            - 동적 배열(자동으로 크기가 조절됨)
+            - 연속된 메모리를 가진다.(배열의 특성) -> 캐시효율 좋음, 랜덤엑세스 성능 좋음( O(1) ), 마지막에 추가 삭제할 때 매우 효율적
+        - 사용처
+            - 데이터 컨테이너가 필요하면 대부분의 경우 vector로 커버가 된다.
+            - 배열처럼 사용해야 할 때
+            
+*/
+
+/*
+    람다(Lambda)
+        - 익명 함수(이름이 없는 함수)
+        - 짧은 함수를 코드 내에서 바로 정의하고 사용하는 용도
+        - 기본구조
+            [캡쳐](파라메터) -> 리턴타입 {함수 본문}
+            캡쳐 : 람다 함수 외보의 변수에 어떻게 접근할지 지정.
+                - [] : 외부 변수를 사용하지 않는다.
+                    - 가능하면 사용하지 말것(성능에 영향을 준다)    
+                    - [&] : 외부의 모든 변수를 참조로 캡쳐한다.(값 변경 불가능)
+                    - [=] : 외부의 모든 변수를 복사로 캡쳐한다.(값 변경 불가능)
+                    - [this] : 클래스 맴버 변수와 맴버 함수에 접근 할 수 있다.
+                - [변수명] : 특정 변수만 복사로 캡쳐
+                - [&변수명] : 특정 변수만 참조로 캡쳐
+                - [변수명1, &변수명2] : 여러변수를 복사/참조로 캡쳐
+            파라메터 : 일반 함수처럼 람다함수가 받을 파라메터들을 정의
+            -> 리턴타입 : 람다 함수의 리턴타입을 명시적으로 지정(생략 가능)
+            { 함수 본문 } : 실제 실행할 코드
+        - 주의 사향
+            - 대규모 캡쳐는 피하는 것이 좋다(&,=,this)
+            - 지연 실행시 참조캡쳐와 포인터변수 캡쳐는 대상이 이미 사라졌을 수 있다.(댕글링 참조)
+            - 값 캡쳐는 불필요한 사본을 만들지 않게 해라.
+
+*/
+
+/*
+    std::set
+    특징
+        - 데이터를 중복 없이 정렬된 상태로 저장하고 싶을 때 사용. 
+        - 탐색 속도도 빠르다.( 레드-블랙 트리 알고리즘 사용. O(log N) )
+        - 노드가 키값만 가지고 있음.(우리가 만든 BST랑 유사.)
+    사용처
+        - 데이터의 유일성, 정렬, 빠른 검색이 필요한 경우에 유용하다.
+        
+
+*/
+
+/*
+    std::map
+        - 특징
+            - Key와 Value의 쌍을 묶어서 저장
+            - 키는 중복 금지, 자동 정렬, 탐색이 빠르다.(레드-블랙 트리, O( log N ) )
+        - 사용처
+            - 데이터에 중복이 없는 키값이 설정되어 있고, 필요할 때 빠르게 찾아하는 경우 유용
+            - 리소스 관리자, 다국어 지원 등등
+
+*/
+
+/*
+    std::unordered_map
+    - 특징
+        - Key와 Value의 쌍을 묶어서 저장
+        - 키는 중복 금지, 정렬 없음(순서가 보장안됨), 탐색이 매우 빠르다. (해시 테이블, O(1)) 
+    - 사용처
+        - 맵이랑 거의 같다.( 데이터
+*/
+
+
+//int RollDice()
+//{
+//    return rand() % 6 + 1;
+//}
+
+
+
+//배열에 저장된 값을 거꾸로 뒤집는 함수 만들기
+    //파라메터 int Array[], int Size
+
+//int Function(int Array[], int Size)
+//{
+//    
+//
+//    for (int i = 0; i < Size/2; i++)
+//    {
+//        int Temp = Array[Size-i];
+//        Array[Size-i] = Array[i];
+//        Array[i] = Temp;
+//            
+//            
+//    }
+//    
+//    return 0;
+//}
+
+
+#define _CRTDBG_MAP_ALLOC
+#define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
+#include <crtdbg.h>
 #include <iostream> // 입출력 관련(cout)
 #include <stdio.h>
+#include <time.h>
 #include <cstdio> // stdio.h에 네임스페이스 추가한 래퍼
 
 #include "header.h"
+#include <random>
+#include "TestMath.h"
+#include "Day0909.h"
+#include "Day0910.h"
+#include "Day0912.h"
+#include "Day0916.h"
+#include "Day0917.h"
+#include "Day0918.h"
+#include "Day0919.h"
+#include "Day0922.h"
+#include "Day0924.h"
+#include "Day_0915.h"
+
+
+int global = 0;
+
+
+//bool LeapYear(int Y)
+//{
+//    return (Y % 4 == 0 && Y % 100 != 0) || (Y % 400 == 0);
+//}
+
+int main()
+{
+
+    Day0924 day0924;
+    day0924.TestLambda();
+    /*Day0919 Start;
+    Start.TestQueue();*/
+
+    return 0;
+    
+
+    /*##요일 구하기
+        1년 1월 1일(월요일)을 기준으로 입력한 날짜까지 며칠이 지났는지 계산한 후, 7로 나눈 나머지로 요일을 구하기.
+        윤년도 올바르게 처리할 것
+        입력받은 연, 월, 일을 기준으로 요일을 출력.*/
+
+    /*int Year = 0;
+    int Month = 0;
+    int Day = 0;
+
+    printf("년도를 입력하세요 : ");
+    std::cin >> Year;
+    printf("월을 입력하세요 : ");
+    std::cin >> Month;
+    printf("일을 입력하세요 : ");
+    std::cin >> Day;
+
+
+
+    int DaysBeforeYear = 0;
+
+    for (int i = 1; i < Year; i++)
+    {
+        if (LeapYear(i))
+        {
+            DaysBeforeYear += 366;
+        }
+        else
+        {
+            DaysBeforeYear += 365;
+        }
+    }
+
+    int DaysBeforeMonth = 0;
+
+    if (Month > 1)
+    {
+        DaysBeforeMonth += 31;
+    }
+    if (Month > 2)
+    {
+        if (LeapYear(Year))
+        {
+            DaysBeforeMonth += 29;
+        }
+        else
+        {
+            DaysBeforeMonth += 28;
+        }
+    }
+    if (Month > 3)
+    {
+        DaysBeforeMonth += 31;
+    }
+    if (Month > 4)
+    {
+        DaysBeforeMonth += 30;
+    }
+    if (Month > 5)
+    {
+        DaysBeforeMonth += 31;
+    }
+    if (Month > 6)
+    {
+        DaysBeforeMonth += 30;
+    }
+    if (Month > 7)
+    {
+        DaysBeforeMonth += 31;
+    }
+    if (Month > 8)
+    {
+        DaysBeforeMonth += 31;
+    }
+    if (Month > 9)
+    {
+        DaysBeforeMonth += 30;
+    }
+    if (Month > 10)
+    {
+        DaysBeforeMonth += 31;
+    }
+    if (Month > 11)
+    {
+        DaysBeforeMonth += 30;
+    }
+
+
+    int TotalDays = DaysBeforeYear + DaysBeforeMonth + Day - 1;
+
+
+
+
+    if (TotalDays % 7 == 0)
+    {
+        printf("월요일입니다\n");
+    }
+    else if (TotalDays % 7 == 1)
+    {
+        printf("화요일입니다\n");
+    }
+    else if (TotalDays % 7 == 2)
+    {
+        printf("수요일입니다\n");
+    }
+    else if (TotalDays % 7 == 3)
+    {
+        printf("목요일입니다\n");
+    }
+    else if (TotalDays % 7 == 4)
+    {
+        printf("금요일입니다\n");
+    }
+    else if (TotalDays % 7 == 5)
+    {
+        printf("토요일입니다\n");
+    }
+    else if (TotalDays % 7 == 6)
+    {
+        printf("일요일입니다\n");
+    }*/
+
+    
+
+
+
+    //Position p1(3.4, 2.2);
+    //Position p2(5.2, 1.5);
+
+    //Position sum = p1 + p2;   // sum.x == 7, sum.y == 4
+    //Position diff = p1 - p2;  // diff.x == -3, diff.y == 2
+
+    //Position p1X2 = p1 * 2;
+
+    //p1X2.x;
+    //p1X2.y;
+    //sum.x;
+    //sum.y;
+    //diff.x;
+    //diff.y;
+
+    //printf("sum.x = %f\n", sum.x);
+    //printf("sum.y = %f\n", sum.y);
+    //printf("diff.x = %f\n", diff.x);
+    //printf("diff.y = %f\n", diff.y);
+    //
+    //Position product = p1 * p2;     // product.x = 10, product.y = 3
+    //Position quotient = p1 / p2;    // quotient.x = 0, quotient.y = 3
+
+    //product.x;
+    //product.y;
+    //quotient.x;
+    //quotient.y;
+
+    //printf("product.x = %f\n", product.x);
+    //printf("product.y = %f\n", product.y);
+    //printf("quotient.x = %f\n", quotient.x);
+    //printf("quotient.y = %f\n", quotient.y);
+
+    //printf("p1X2.x = %f\n", p1X2.x);
+
+
+
+
+
+   /* _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+    
+    
+    
+    int* p = nullptr;*/
+
+
+    /*Day0910_String();*/
+    //Day0908_Practice2();
+
+    /*int Length = MyStringLength("HelloWorld");
+    printf("%d", Length);*/
+    
+
+
+
+
+
+
+
+
+    //6면체 주사위를 100만번 던져서 각 눈의 수가 몇번 나왔는지 카운팅하기
+    //6면체 주사위를 돌리는 함수 만들기
+
+   /* srand(time(NULL));
+
+   
+
+    int Sum[7] = {};
+
+
+
+
+    for (int i = 0; i < 1000000; i++)
+    {
+        int Result = RollDice();
+
+        Sum[Result]++;
+
+    }
+        
+    for (int i = 1; i < 7; i++)
+    {
+        printf("%d, %d\n", i, Sum[i]);
+    }*/
+
+       
+
+    
+
+    
+
+
+        
+
+    
+        
+
+
+    // 로또 번호 생성기
+    //전체 숫자 범위: 1번부터 45번까지.
+    //맞춰야 하는 숫자 개수 : 6개.
+
+    
+
+
+
+
+
+
+
+
+    //int a = 10;
+    //int Array[5];   //  int 5개를 관리하는 배열
+    //Array[0] = 10;  //  배열의 첫번째 요소에 10을 대입한다.
+    //Array[3] = 40;  //  배열의 네번째 요소에 40을 대입한다.
+
+    //int Array2[5] = { 1,2,3,4,5 };
+    //int Array3[5] = { 1,2,3 };
+    //int Array4[10] = { 0 };
+
+    //const int Size = 5;
+    //int Array5[Size] = {};
+    //sizeof(Array5); // Array5의 전체 바이트 크기를 알 수 있다.
+    //sizeof(Array5[0]); // Array5의 요소 하나의 크기를 알 수 있다.
+
+    //int ElementCount = sizeof(Array5) / sizeof(Array5[0]);  // Array5의 요소 개수
+
+
+
+    /*int Size2 = 5;
+    int Array6[Size2] = {};*/// 배열 선언할 때 크기를 변수로 지정할 수는 없다.
+
+
+    // Array[5] = 60;  //    버퍼오버런. 배열 영역 밖을 접근하려고 하기 때문에 에러가 발생한다.
+
+
+     //간단실습
+     //1. 배열 만들고 초기화 해보기
+     //2. 배열의 모든 요소의 값을 더하고 평균 구하기
+     //3. 배열의 모든 요소 중 최대값과 최소값 구하기 
+
+ //    int Array[10];
+ //
+ //    int Array2[5] = { 2, 4, 6, 8, 10 };
+ //
+ //    sizeof(Array2);
+ //    int Sum = 0;
+ //    float Average = 0.0f;
+ //    int ArrayCount = static_cast<int>(sizeof(Array2) / sizeof(Array2[0]));
+ //
+ //    for (int i = 0; i < ArrayCount; i++)
+ //    {
+ //        Sum += Array2[i];
+ //    }
+ //    Average = Sum / ArrayCount;
+ //    
+ //    printf("평균은 %.2f입니다\n", Average);
+ //
+ //    int MaxNumber = INT_MIN;
+ //    int MinNumber = INT_MAX;
+ //    for (int i = 0; i < ArrayCount; i++)
+ //    {
+ //        if (MaxNumber < Array2[i])
+ //        {
+ //            MaxNumber = Array2[i];
+ //        }
+ //        if (MinNumber > Array2[i])
+ //        {
+ //            MinNumber = Array2[i];
+ //        }
+ //
+ //    }
+ //
+ //    return 0;
+ //
+ //
+ //}
+ //
+ //void Day0908_Cast()
+ //{
+ //    int a = 10;
+ //    float b = 15.5f;
+ //
+ //        a = (int)b; // b를 int형으로 캐스팅해서 a에 대입한다. (C스타일. 명시적 캐스팅)
+ //        a = b;      // b를 a에 대입한다. 그런데 a와 b는 타입이 다르니까 b를 a로 암시적으로 캐스팅해서 대입한다.(C스타일, 암시적 캐스팅)
+ //        b = a;      // 암시적 캐스팅은 대체로 표현이 작은쪽에서 큰쪽으로는 문제없는 경우가 많다.
+ //
+ //        //C++ 캐스팅
+ //        //static_cast   : C스타일 캐스팅을 안전하게 만든 것. 컴파일 타임에 결정됨
+ //        // dynamic_cast : 다음에(클래스 이후에)
+ //        //const_cast    : const 속성을 제거하거나 추가하는데 사용. 사용하지 않는 것이 권장.
+ //        //reinterpret_cast  : C스타일 캐스팅에서 위험한 부분. 원래 타입의 구조를 무시하고 새 타입으로 해석하게 한다.
+ //
+ //        a = static_cast<int>(b);    // b를 int형으로 캐스팅해서 a에 대입한다. (C++스타일, 명시적 캐스팅)
+ //
+
+    //void TestRef(int& OutData)
+    //{
+    //    OutData *= 2;
+    //}
+
+
+
+
+
+    //int Number = 10;
+    //int& Ref = Number; // Number의 참조는 Ref다
+
+    //TestRef(Number);
+
+    //int i = 0;
+
+    
+
+
+
+    
+}
+
+
+   
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+//void Shuffle(int Array[], int Length)
+//{
+//    /*알고리즘 순서
+//        1. 배열의 마지막요소에서 첫요소까지 순회
+//        2. 현재 요소의 인덱스(i)와, 0~i 중 임의의 인덱스(j)를 선택한다.
+//        3. i번째 요소와 j번째 요소를 서로 교환
+//        4. i가 0이 될때까지 반복*/
+//
+//    for (int i = Length - 1; i > 0; i--)
+//    {
+//        int j = rand() % (i + 1);
+//        int Temp = Array[i];
+//        Array[i] = Array[j];
+//        Array[j] = Temp;
+//    }
+//
+//}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //using namespace std;
 
-int main() // 엔트리 포인트(코드가 시작되는 곳)
-{
+//int main() // 엔트리 포인트(코드가 시작되는 곳)
+//{
+//
+//    int Number = Sum(1, 7); // Sum함수를 호출했다. 파라메터로 1과 7을 넘겼다. 그리고 8을 돌려받았다.
+//    
+//    Number = Multiply(2, 3);
+//    Number = Multiply(7);
+//
+//    int A = Minus(8, 2);
+//
+//    TestRecurcive(5);
+//
     
-    printf( "Hello\t World!\n");  // C언어의 출력 방법
-    printf("\"박용익\"\t");      //""안에 \n이 있으면 줄을 바꾸라는 의미
-    printf("98년생입니다.▩"); 
-    printf("나이가 몇살입니까?\n");
+        
+
+
+    //C 스타일의 랜덤 사용법
+    //srand(time(0)); //실제 게임용
+    //srand(0); //테스트용
+    /*for (int i = 0; i < 10; i++)
+    {
+    int RandomNumber = rand();
+    printf("랜덤한 숫자 : %d\n", RandomNumber);
+    
+    }*/
+
+    //// 0~5까지의 숫자를 랜덤으로 구하고 싶다
+    /*int RandomNumber = rand() % 6;*/
+
+
+    //// 1~6까지의 숫자를 랜덤으로 구하고 싶다
+    //int RandomNumber = rand() % 6 + 1;
+
+    //// C++ 스타일
+    //std::random_device RandomDivece;
+    //std::mt19937 Generate(RandomDivece());
+
+
+    //printf("균등분포 : ");
+    //std::uniform_int_distribution<> uniformDis(1, 100);
+    //for (int i = 0; i < 10; i++)
+    //{
+    //    int Number = uniformDis(Generate);
+    //    printf("%d", Number);
+    //    if (i < 9)
+    //    {
+    //        printf(" , ");
+    //    }
+    //}
+    //printf("\n");
+
+    //
+    //printf("정규분포 : ");
+
+
+
+    /*
+    int flag = 0b1010;  //0b0001;
+    //0b0001    =   왼쪽키가 눌려졌다.
+    //0b0010    =   오른쪽키가 눌려졌다.
+    //0b0100    =   위쪽키가 눌려졌다.
+    //0b1000    =   아래쪽키가 눌려졌다.
+
+    if ((flag & 0b0010)!= 0b0000)
+    {
+        //오른쪽 키가 눌려져 있다.
+    }
+    else
+    {
+        //오른쪽 키가 눌려져 있지 않다.
+    }
+
+    //enum : 상수들에게 사람이 알아보기 좋은 이름을 붙여 놓은 것
+    enum Key
+    {
+        Up      = 1 << 0,   //0b0001
+        Down    = 1 << 1,   //0b0010
+        Left    = 1 << 2,   //0b0100
+        Right   = 1 << 3    //0b1000
+     };
+
+    //간단 실습 : 양수를 하나 입력받고 홀수인지 짝수인지 출력하기(%사용금지)
+    */
+    
+    /*int InputNumber = 0;
+    printf("테스트할 수를 입력하세요 :");
+    std::cin >> InputNumber;
+    if ((InputNumber & 1) != 0)
+    {
+        printf("홀수를 입력했습니다\n");
+    }
+    else
+    {
+        printf("짝수를 입력했습니다\n");
+    }*/
 
     
+
+
+
+   
+
+
+    //float a = 10.0f;
+    //float b = 0.0f;
+    //std::cin >> b;
+    //b = b * 123.0f;
+
+    //bool result = a == b; // F9 : 브레이크 포인트 설정/해제
+
+    //float epsilon = 0.001f;
+
+    ////float 타입을 ==로 비교할 때 반드시 아래와 같이 진행해야함.
+    ////float epsilon = 0.001f;
+    ////a < (b + epsilon);
+    ////a > (b - epsilon);
+
+    //// if : 소괄호 안이 true면 중괄호 안의 코드를 실행하라
+    ////      내가 특정 조건을 만족할 때만 어떤 코드를 실행하고 싶을 때 사용.
+    //
+    //int a = 10;
+    //int b = 0;
+    //printf("a는 10\nb를 입력하세요 : ");
+    //std::cin >> b;
+
+
+
+
+    //if (a > b)
+    //{
+    //    printf("if가 성공했다.\n");
+    //    printf("b가 %d라서 a가 더 크다", b);
+    //}
+
+    //if (a <= b)
+    //{
+    //    printf("b가 %d라서 a가 작거나 같다", b);
+    //}
+
+    //if-else : 이거 아니면 저거일때 사용.
+    /*if (a > b)
+    {
+        printf("a가 b보다 크다.");
+    }
+    else
+    {
+        printf("a가 b보다 작거나 같다.");
+    }
+
+    if (b < 60)
+    {
+
+    }
+    else if (b < 70)
+    {
+
+    }
+    else if (b < 80)
+    {
+
+    }
+    else if (b < 90)
+    {
+
+    }
+    else
+    {
+
+    }*/
+    
+    //int a = 0;
+    //std::cin >> a;
+    //switch (a)
+    //{
+    //case 1 :
+    //    printf("1이다.\n");
+    //    break;
+    //case 3:
+    //    printf("3이다.\n");
+    //    break;
+    //case 5:
+    //    printf("5이다.\n");
+    //    break;
+    //default:
+    //    printf("1이다.\n");
+    //    break;
+    //}
+
+    //int a = 10;
+    //int b = 20;
+    //int c = 0;
+    //if (a > b)
+    //{
+    //    c = a * 2 + b;
+    //}
+    //else (a > b)
+    //{
+    //    c = a + 2 * b;
+    //}
+    //c = (a > b) ? (a * 2 + b) : (a + b * 2); //삼항연산자
+    
+    
+    
+    
+    
+    
+    //printf("Hello\t World!\n");  // C언어의 출력 방법
+    //printf("\"박용익\"\t");      //안에 \n이 있으면 줄을 바꾸라는 의미
+    //printf("98년생입니다.▩");
+    //printf("나이가 몇살입니까?\n");
+
+
     //이스케이프 시퀸스
     // \n : 줄바꾸기(개행문자)
     // \t : 탭 넣기
     // \" : 쌍따옴표 한개
     // \\ : /찍기
     // \r : 캐리지 리턴(윈도우에서는 중요하지않음. 리눅스에서는 중요함)
-    
-    
-    
+
+
+
     //std::cout << "Hello World!\n";  // C++ 출력 방법
 
-    int number = 0;
-    scanf("%d", &number); // 숫자를 하나 입력 받기(C)
+    // number라는 이름을 가진 int(인티저)변수를 선언하고 거기에 0을 대입한다.
+    //int number; //변수 선언.
+    //number = 0; //변수에 값을 대입.
 
-    printf("입력한 숫자는 : %d\n", number);
+    ////int : 정수형(소수점이 없는 숫자, 5, 10, -2, 0, 66 ...)
+    //number = 5.3; // number에는 5가 저장된다.
+    //number = 5 / 2; //number에는 2가 저장된다.
+
+   // scanf("%d", &number); // 숫자를 하나 입력 받기(C)
+
+   // printf("입력한 숫자는 : %d\n", number);
 
 
-    std::cin >> number;     // 숫자를 하나 입력 받기(C++)
-    printf("입력한 숫자는 : %d\n", number);
+    //std::cin >> number;     // 숫자를 하나 입력 받기(C++)
+   // printf("입력한 숫자는 : %d\n", number);
 
     //프로그램을 실행했을 때 나이를 물어보고 입력받은 숫자를 그대로 출력해보기
 
-
-    return 0;
-
     //아무거나ㅎㅎㅎㅎㅎ
+
+//if는 범위가 큰것이 먼저 체크되게 하기
+//변수는 사용하기 직전에 선언하기
+//unsigned (부호없는) -> 음수없이 양수만 쓸때도 사용, float은 사용못함
+
+   /* printf("   *\n");
+    printf("  ***\n");
+    printf(" *****\n");
+
+
+    printf("■■■■■■\n");
+    printf("■  ■    ■\n");
+    printf("■      ■■\n");
+    printf("■■■■■■\n");
+
+
+    int number4 = 4;
+    int number5 = 5;
+    printf("숫자 4을 입력하시오 : ");
+    std::cin >> number4;
+    printf("숫자 5을 입력하시오 : ");
+    std::cin >> number5;
+    int temp = number5;
+    int number5 = number4;
+    int number4 = temp;
+    
+
+
+    int width = 3;
+    int length = 5;
+    printf("숫자 3을 입력하시오 : ");
+    std::cin >> width;
+    printf("숫자 5을 입력하시오 : ");
+    std::cin >> length;
+    int extent = width * length;
+    printf("넓이는 %d입니다.", extent);
+
+    int number6 = 6;
+    int number10 = 10;
+    printf("숫자 6을 입력하시오 : ");
+    std::cin >> number6;
+    printf("숫자 10을 입력하시오 : ");
+    std::cin >> number10;
+    int goal = number10 / number6;
+    printf("10을 6으로 나누시오");
+    printf("몫은 %d입니다.", goal);
+    printf("나머지는 %d입니다.", number10 - number6);*/
+
 
 
 
     
-}
+
+
+
+    //int number1 = 1;
+    //int number2 = 2;
+    //printf("숫자 1을 입력하시오 : ");
+    //std::cin >> number1;
+    //printf("숫자 2를 입력하시오 : ");
+    //std::cin >> number2;
+    //int number3 = number1 + number2;
+    //printf("두 숫자의 합은 %d입니다.", number3);
+
+    //float number1 = 10.0f;  //  10이라는 float 타입의 값을 float인 number1에 넣기
+    //float number2 = 15.0;   //  15라는 double 타입의 값을 float인 number2에 넣기
+
+    //std::cin >> number1 >> number2;
+    //printf("number1 : %f\nnumber2 : %.2f", number1, number2);
+
+    // 간단실습 : 원의 반지름을 입력 받고 넓이 구하기
+    //const float Pi = 3.141592f; // 상수를 선언하고 정의
+    //float radius = 0.0f;
+    //printf("원의 반지름을 입력하세요 : ");
+    //std::cin >> radius;
+    //printf("원의 넓이는 %f입니다.\n", radius* radius * Pi);
+
+
+    //int square = 0;
+    //printf("정사각형의 한변의 길이를 입력하세요 : ");
+    //std::cin >> square;
+    //printf("정사각형의 넓이는 %d입니다.", square* square);
+    ////오버플로우 발생할 수 있음
+
+/*
+    int number = 0;
+    std::cin >> number;
+    printf("입력한 숫자는 : %d\n", number);
+    if (number > 0)
+    {
+        printf("양수입니다");
+    }
+    else if (number == 0)
+    {
+        printf("0입니다");
+    }
+    else
+    {
+        printf("음수입니다");
+    }
+
+    //int number = 0;
+    printf("숫자를 입력하세요 : ");
+    std::cin >> number;
+    if (number % 2 == 0)
+    {
+        printf("짝수입니다");
+    }
+    else
+    {
+        printf("홀수입니다");
+    }
+
+    float a = 0.0f;
+    float b = 0.0f;
+        
+    std::cin >> a;
+    printf("입력한 숫자는 : %f\n", a);
+        
+    std::cin >> b;
+    printf("입력한 숫자는 : %f\n", b);
+
+    if (a > b)
+    {
+        printf("%f\n", a);
+    }
+    else if (a == b)
+    {
+        printf("같음\n");
+    }
+    else
+    {
+        printf("%f\n", b);
+    }
+
+
+
+       /* const 붙이면 상수
+        const unsigned int LimitAge = 5;
+        const float LimitHeight = 120.0f;
+        unsigned int Age = 0;*/
+        
+        
+    /*
+
+    int age = 0;
+    float height = 0.0f;    // 암시적 변환(대충 변환해주는거, 보통 표현범위가 큰쪽으로 변경됨)
+    printf("나이는? : %d\n", age);
+    std::cin >> age;
+    printf("키는? : %f\n", height);
+    std::cin >> height;
+
+    if (age >= 6 && height >= 120)
+    {
+        printf("탑승 가능\n");
+    }
+    else
+    {
+        printf("탑승 불가능\n");
+    }
+
+    int point = 0;
+    printf("점수를 입력하시오 : ");
+    std::cin >> point;
+        
+    if (point < 60)
+    {
+        printf("F");
+    }
+    else if (point < 70)
+    {
+        printf("D");
+    }
+    else if (point < 80)
+    {
+        printf("C");
+    }
+    else if (point < 90)
+    {
+        printf("B");
+    }
+    else
+    {
+        printf("A");
+    }
+
+    int subject1 = 0;
+    int subject2 = 0;
+    int subject3 = 0;
+    printf("1과목의 점수를 입력하시오 : ");
+    std::cin >> subject1;
+
+    printf("2과목의 점수를 입력하시오 : ");
+    std::cin >> subject2;
+
+    printf("3과목의 점수를 입력하시오 : ");
+    std::cin >> subject3;
+        
+    if (subject1 < 40 || subject2 < 40 || subject3 < 40)
+    {
+        printf("불합격");
+    }
+    else if ((subject1 + subject2 + subject3) / 3 >= 60)
+    {
+        printf("합격");
+    }        
+    else
+    {
+        printf("불합격");
+    }
+    
+    */
+
+
+    //헬로 월드 10번 찍기(for)
+    /*for (int i = 0; i < 10; i++)
+    {
+        printf("Hello World For : %d\n", i);
+    }*/
+
+    //int Count = 1;
+    //while ((Count % 3) != 0 ) // while()의 조건이 참이면 코드 블럭 실행
+    //{
+    //    printf("Hello World While : %d\n", Count);
+    //    Count++;
+    //}
+
+    //Count = 1;
+    //do
+    //{
+    //    printf("Hello World While : %d\n", Count);
+    //    Count++;
+    //} while ((Count % 3) != 0); // 일단 한번 실행하고 while()의 조건이 참이면 코드 블럭 실행
+
+    //간단 실습
+    //1. 0을 입력받을 때까지 입력을 계속 받고, 0이 입력되면, 입력받은 숫자의 합을 출력하기
+    //      while이랑 do-while 모두 해보기
+    // 
+    //2. 입력받은 숫자의 구구단 출력해보기
+    // 
+    //3. 숫자를 하나 입력 받고 0부터 입력받은 수까지 있는 숫자 중 홀수만 출력하기
+    // 
+    //4. 1~100사이의 숫자 중에 7의 배수만 출력하기
+    // 
+    //5. 입력받은 숫자만큼의 층을 가진 피라미드 그리기
+    // 
+    // 5-1. 입력을 받아야 한다.(InputNumber)
+    // 
+    // 5-2. *표가 첫번째 층에서는 1개 두번째 층에서는 3개.. 이런식으로 이어지니
+    //      각층별로 (층수 * 2 + 1)만큼의 *을 찍어야 한다.
+    // 
+    // 5-3. " "을 (총층수 - (현재 층수 + 1))만큼 추가해야 한다.
+    //   
+    //      3을 입력받았으면
+    //      *
+    //     ***
+    //    *****
+
+    /*int InputNumer = 1;
+    int Sum = 0;
+    std::cin >> InputNumer;*/
+    //while (InputNumer != 0)
+    //{
+    //    //printf("%d\n", InputNumer);
+    //    Sum = Sum + InputNumer;
+    //    std::cin >> InputNumer;
+
+    //}
+    //printf("%d", Sum);
+
+    /*do
+    {
+        Sum = Sum + InputNumer;
+        std::cin >> InputNumer;
+    } while (InputNumer != 0);
+    printf("%d", Sum);*/
+    
+
+    
+    /*int InputNumber = 0;
+    std::cin >> InputNumber;
+    for (int A = 1; A < 10; A++)
+    {
+        printf("%d * %d = %d\n", InputNumber, A, InputNumber * A);
+    }*/
+
+    
+    /*int InputNumber = 0;
+    printf("최대치를 입력하세요 : ");
+    std::cin >> InputNumber;
+    for (int i = 0; i <= InputNumber; i++)
+    {
+        if ((i % 2) == 1)
+        {
+            printf("%d는 홀수입니다.\n" , i);
+        }
+    }*/
+   
+    //const int MinNumber = 1;
+    //const int MaxNumber = 100;
+    //
+    //for (int i = 1; i < MaxNumber; i++)
+    //    {
+    //        if ((i % 7) == 0)
+    //        {
+    //            printf("%d는 7의 배수입니다.\n", i);
+    //        }
+    //    }
+
+    
+    //int InputNumber = 0;
+    //printf("피라미드 층수를 입력하세요 : ");
+    //std::cin >> InputNumber;
+
+    //for (int i = 0; i < InputNumber; i++)
+    //{
+    //    for (int j = 0; j < (InputNumber - (i + 1)); j++)
+    //    {
+    //        printf(" ");
+    //    }
+    //    for (int k = 0; k < (i * 2 + 1); k++)
+    //    {
+    //        printf("*");
+    //    }
+    //    printf("\n");
+    //}
+    
+
+//실습 
+//1 주사위를 100만번 돌려서 6이 몇번 나왔는지 카운팅해서 출력하기
+    /*int RandomNumber = 0;
+    int Count = 0;
+    for (int i = 0; i < 1000000; i++)
+    {
+        int RandomNumber = rand() % 6 + 1;
+        if (RandomNumber == 6)
+        {
+            Count++;
+        }
+    }
+    printf("%d", Count);*/
+
+//2 가위, 바위, 보 게임 만들기
+//3선승제
+//enum 활용
+      
+    /*enum Key
+    {
+        Rock = 0,
+        Scissors,
+        Paper
+    };
+    
+    int Player = 0;
+    
+    
+    
+    int playerWin = 0;
+    int ComputerWin = 0;
+    while (playerWin < 3 && ComputerWin < 3)
+    {
+        printf("당신의 수는? : ");
+        std::cin >> Player;
+        int Computer = rand() % 3;
+        if (Player == Rock && Computer == Rock)
+        {
+            printf("무승부\n");
+        }
+        else if (Player == Rock && Computer == Paper)
+        {
+            printf("패배\n");
+            ComputerWin++;
+        }
+        else if (Player == Rock && Computer == Scissors)
+        {
+            printf("승리\n");
+            playerWin++;
+        }
+        else if (Player == Scissors && Computer == Scissors)
+        {
+            printf("무승부\n");
+        }
+        else if (Player == Scissors && Computer == Rock)
+        {
+            printf("패배\n");
+            ComputerWin++;
+        }
+        else if (Player == Scissors && Computer == Paper)
+        {
+            printf("승리\n");
+            playerWin++;
+        }
+        else if (Player == Paper && Computer == Paper)
+        {
+            printf("무승부\n");
+        }
+        else if (Player == Paper && Computer == Scissors)
+        {
+            printf("패배\n");
+            ComputerWin++;
+        }
+        else if (Player == Paper && Computer == Rock)
+        {
+            printf("승리\n");
+            playerWin++;
+        }
+        
+    }
+    if (playerWin > 2)
+    {
+        
+        printf("플레이어 승리\n");
+    }
+    else
+    {
+        printf("컴퓨터 승리\n");
+
+    }*/
+
+
+   // 3 하이 로우
+   // 컴퓨터가 1~100 사이의 임의의 숫자를 선택하고,
+   // 사용자가 맞출 때까지 입력을 받아 "더 높게", "더 낮게" 등의 힌트를 제공하는 게임
+   // 5번안에 맞춰야 승리
+    
+    /*int RandomNumber = rand() % 100 + 1;
+    int PlayerNumber = 0;
+    int CountDown = 5;
+    
+    
+
+    while (CountDown > 0)
+    {
+        
+        
+    printf("1~100 사이의 숫자를 예상해 보세요 :");
+    std::cin >> PlayerNumber;
+
+        if (PlayerNumber < RandomNumber)
+        {
+            printf("더 높게\n");
+        }
+        else if (PlayerNumber > RandomNumber)
+        {
+            printf("더 낮게\n");
+        }
+        else
+        {
+            printf("정답\n");
+            break;
+        }
+        CountDown--;
+        printf("남은 회수는 %d번 입니다\n", CountDown);
+    }
+    if (CountDown <= 0)
+    {
+        printf("실패했습니다.\n");
+    }
+    getchar();
+    getchar();*/
+
+    
+    
+   // 4 공포 게임의 인벤토리를 비트플래그로 표현하기
+   // 아이템 종류를 나타내는 enum을 만들고
+   // 특정 아이템을 추가하고 삭제하는 예시 보여주기
+    
+    //enum Item
+    //{
+    //    Key  = 1 << 0,
+    //    Fuse = 1 << 1,
+    //    Book = 1 << 2,
+    //    Note = 1 << 3,
+    //};
+
+    //const int ItemCount = 4;
+    //int Inventory = 0;  
+
+    ////Inventory = 0b1111; // 테스트 코드
+
+    //int PlayerSelect = -1;
+
+    //while (PlayerSelect != 3)
+    //{
+    //    printf("어떤 일을 할까요 [1:아이템추가, 2:아이템삭제, 3:종료] : ");
+    //    std::cin >> PlayerSelect;
+
+    //    switch (PlayerSelect)
+    //    {
+    //    case 1:
+    //    {
+    //        printf("어떤 아이템을 추가할까요? [0:열쇠, 1:퓨즈, 2:책, 3:쪽지]: ");
+    //        int AddItem = -1;
+    //        std::cin >> AddItem;
+    //        Inventory |= (1 << AddItem);
+    //    }
+    //    break;
+    //    case 2:
+    //    {
+    //        printf("어떤 아이템을 제거할까요? [0:열쇠, 1:퓨즈, 2:책, 3:쪽지]: ");
+    //        int RemoveItem = 0;
+    //        std::cin >> RemoveItem;
+    //        Inventory &= (~(1 << RemoveItem));
+    //    }
+    //    break;
+    //    case 3:
+    //        continue;
+    //    default:
+    //        //에러 출력하기
+    //        break;
+
+    //    }
+    //}
+
+
+    /*printf("인벤토리 : ");
+    if ((Inventory & Key) != 0)
+    {
+        printf("열쇠");
+    }
+    if ((Inventory & Fuse) != 0)
+    {
+        printf("퓨즈");
+    }
+    if ((Inventory & Book) != 0)
+    {
+        printf("책");
+    }
+    if ((Inventory & Note) != 0)
+    {
+        printf("쪽지");
+    }
+    printf("\n");
+
+    getchar();
+    getchar();*/
+
+
+
+
+
+    // 0b0010
+    // 인벤토리 내용 출력하기(Inventory의 비트내용에 따라 출력)
+    // 1번 : 아이템 추가, 2번 : 아이템 버리기, 3번 : 종료
+    // 이미 있는 아이템을 추가하려고하면 "이미 있는 아이템입니다" 출력
+    // 없는 아이템을 버리려고하면 "없는 아이템입니다." 출력
+
+
+    //TestMath에 사칙연산용 템플릿 함수 4개 만들기
+
+
+    
+
+
+#include <iostream>
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    return 0;
+//}
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
 
